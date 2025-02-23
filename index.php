@@ -1,42 +1,43 @@
 <?php
 // index.php - Entry point for the staff portal
 
-// Include Composer's autoloader (handles PSR-4 autoloading)
+
 require_once __DIR__ . '/vendor/autoload.php';
 
-// Load environment variables from the .env file
 use Dotenv\Dotenv;
+use App\Session\MySQLSessionHandler;
+
 $dotenv = Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-// Before starting the session, configure cookie parameters
+
+// This must happen before session_start()
+$cookieParams = session_get_cookie_params();
 session_set_cookie_params([
-    'lifetime' => 0,                // Session cookie persists until the browser is closed
+    'lifetime' => $cookieParams['lifetime'],
     'path'     => '/',
-    'domain'   => '.japropertysc.com', // Notice the leading dot for subdomain sharing
-    'secure'   => true,             // Only send cookie over HTTPS
-    'httponly' => true,             // Prevent JavaScript access to the cookie
-    'samesite' => 'Lax'             // Adjust based on your needs (None, Lax, Strict)
+    'domain'   => '.example.com', // <--- note the leading dot
+    'secure'   => $cookieParams['secure'],
+    'httponly' => $cookieParams['httponly'],
+    // Optional, but if you’re doing cross-site requests, you may need SameSite=None
+    'samesite' => 'None',         
 ]);
 
+session_name('MYSESSIONID'); // Make sure both apps use the same session name
 session_start();
 
-
-// Check if the user is logged in
+// Check if the user is logged in (i.e. if the 'user' key exists in the session)
 if (!isset($_SESSION['user'])) {
-    // Instead of invoking LoginController, redirect to the authentication portal
+    // Redirect to the authentication portal if not logged in
     header('Location: https://auth.japropertysc.com');
     exit;
 }
 
-// If logged in, check if the user is a customer
+// If logged in, check if the user is a customer and redirect accordingly
 if (isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'customer') {
-    // Redirect customers to the customer portal
     header('Location: https://customer.japropertysc.com');
     exit;
 }
-
-// Otherwise, assume the user is a staff member and load the portal
 
 // Retrieve the request URI (path only)
 $request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
@@ -45,22 +46,18 @@ $request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 switch ($request) {
     case '/':
     case '/dashboard':
-        // Load the staff dashboard
         require __DIR__ . '/views/dashboard.php';
         break;
         
     case '/profile':
-        // Load the staff profile page
         require __DIR__ . '/views/profile.php';
         break;
         
     case '/settings':
-        // Load the staff settings page
         require __DIR__ . '/views/settings.php';
         break;
         
     default:
-        // For undefined routes, send a 404 response
         http_response_code(404);
         echo "404 Not Found";
         break;
