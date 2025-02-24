@@ -33,11 +33,18 @@ if (!isset($_SESSION['user'])) {
     exit;
 }
 
-// If logged in, check if the user is a customer and redirect accordingly
-if (isset($_SESSION['user']['role']) && $_SESSION['user']['role'] === 'customer') {
-    header('Location: https://customer.japropertysc.com');
+// If logged in, check if the user is admin or staff and redirect accordingly
+if (
+    isset($_SESSION['user']['role']) && 
+    (
+        $_SESSION['user']['role'] === 'admin' || 
+        $_SESSION['user']['role'] === 'staff'
+    )
+) {
+    header('Location: https://backoffice.japropertysc.com');
     exit;
 }
+
 
 // Retrieve the request URI (path only)
 $request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
