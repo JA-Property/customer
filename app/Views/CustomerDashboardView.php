@@ -230,5 +230,5 @@ $headerTitle = 'Dashboard';        // Example: Dashboard title
 $pageTitle = 'Dashboard - MyApp';  // Example: Page title for the browser tab
 
 // Include the global layout file and pass the content and variables to it
-include __DIR__ . '/Layouts/Staff.php';
+include __DIR__ . '/Layouts/Customer.php';
 ?>

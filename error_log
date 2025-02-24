@@ -1,0 +1,5 @@
+[24-Feb-2025 01:16:49 UTC] PHP Warning:  require(/home/japrdjyn/customer/views/dashboard.php): Failed to open stream: No such file or directory in /home/japrdjyn/customer/index.php on line 56
+[24-Feb-2025 01:16:49 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/japrdjyn/customer/views/dashboard.php' (include_path='.:/opt/alt/php81/usr/share/pear:/opt/alt/php81/usr/share/php:/usr/share/pear:/usr/share/php') in /home/japrdjyn/customer/index.php:56
+Stack trace:
+#0 {main}
+  thrown in /home/japrdjyn/customer/index.php on line 56

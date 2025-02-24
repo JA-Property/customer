@@ -53,15 +53,17 @@ $request = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 switch ($request) {
     case '/':
     case '/dashboard':
-        require __DIR__ . '/views/dashboard.php';
+        require __DIR__ . '/app/Views/CustomerDashboardView.php';
         break;
-        
+
+    // If you still want /profile and /settings routes, either create those files 
+    // OR point them to the same or other custom views:
     case '/profile':
-        require __DIR__ . '/views/profile.php';
+        require __DIR__ . '/app/Views/CustomerDashboardView.php';
         break;
-        
+
     case '/settings':
-        require __DIR__ . '/views/settings.php';
+        require __DIR__ . '/app/Views/CustomerDashboardView.php';
         break;
         
     default:
@@ -69,4 +71,5 @@ switch ($request) {
         echo "404 Not Found";
         break;
 }
+
 ?>
