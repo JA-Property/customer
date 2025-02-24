@@ -3,222 +3,378 @@
 ob_start();
 ?>
 
-<!-- View-specific content -->
-<div class="flex flex-col p-4 space-y-6">
-  <h1 class="text-3xl font-bold">This is the Individual View</h1>
-  <p class="text-gray-600">Below is an example layout with some dummy data showcasing various widgets and sections.</p>
-
-  <!-- BEGIN: High-Level Overview Cards -->
-  <section class="mt-4">
-    <h2 class="text-xl font-semibold mb-2">High-Level Overview Cards</h2>
-
-    <!-- KPIs -->
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
-      <div class="bg-white shadow p-4 rounded">
-        <h3 class="font-bold text-gray-700">Total Jobs</h3>
-        <p class="text-2xl font-semibold text-blue-600">120</p>
-        <p class="text-gray-400 text-sm">Completed: 90 | In-progress: 20 | Pending: 10</p>
+    <!-- PAGE TITLE + WELCOME -->
+    <div class="flex items-center justify-between">
+        <h1 class="text-2xl font-bold text-green-800">Dashboard</h1>
+        <!-- Example: Quick Link to Profile -->
+        <a
+          href="#"
+          class="inline-flex items-center text-sm text-green-700 hover:underline"
+        >
+          <i class="fa-solid fa-user mr-1"></i>Profile Settings
+        </a>
       </div>
-      <div class="bg-white shadow p-4 rounded">
-        <h3 class="font-bold text-gray-700">Revenue (This Month)</h3>
-        <p class="text-2xl font-semibold text-green-600">$24,500</p>
-        <p class="text-gray-400 text-sm">Daily Avg: $820</p>
-      </div>
-      <div class="bg-white shadow p-4 rounded">
-        <h3 class="font-bold text-gray-700">Customer Satisfaction</h3>
-        <p class="text-2xl font-semibold text-purple-600">4.6 / 5</p>
-        <p class="text-gray-400 text-sm">Based on 230 reviews</p>
-      </div>
-      <div class="bg-white shadow p-4 rounded">
-        <h3 class="font-bold text-gray-700">Average Job Duration</h3>
-        <p class="text-2xl font-semibold text-indigo-600">2.3 hrs</p>
-        <p class="text-gray-400 text-sm">Per Technician</p>
-      </div>
-    </div>
-
-    <!-- Alerts & Notifications -->
-    <div class="mt-6">
-      <h3 class="text-lg font-bold text-gray-700">Alerts & Notifications</h3>
-      <ul class="list-disc list-inside text-gray-600 mt-2">
-        <li><strong>Maintenance:</strong> Vehicle #12 requires oil change in 2 days.</li>
-        <li><strong>Equipment:</strong> Lawn mower blades running low in inventory.</li>
-        <li><strong>Support Ticket:</strong> Ticket #435 is unresolved for 3 days.</li>
-      </ul>
-    </div>
-  </section>
-  <!-- END: High-Level Overview Cards -->
-
-  <!-- BEGIN: Scheduling & Task Management -->
-  <section>
-    <h2 class="text-xl font-semibold mb-2">Scheduling & Task Management</h2>
-    
-    <!-- Calendar/Scheduling Widget (Placeholder) -->
-    <div class="bg-white p-4 rounded shadow">
-      <h3 class="font-bold text-gray-700">Calendar/Scheduling Widget</h3>
-      <p class="text-gray-600 text-sm">
-        <em>Dummy calendar display here...</em>  
+      <p class="text-gray-600">
+        Welcome to your JJ Turfs customer portal. Here you can manage your lawn care schedules,
+        track billing, and more. Your role(s) determine what features you can access below.
       </p>
-      <ul class="list-disc list-inside text-gray-600 mt-2">
-        <li>Daily/weekly calendar view for appointments, job assignments, and service windows</li>
-        <li>Drag-and-drop functionality for reassignments</li>
-      </ul>
-    </div>
 
-    <!-- Job/Task List -->
-    <div class="mt-4 bg-white p-4 rounded shadow">
-      <h3 class="font-bold text-gray-700">Job/Task List</h3>
-      <p class="text-gray-600 text-sm">
-        <em>Some active jobs displayed here...</em>
-      </p>
-      <ul class="list-disc list-inside text-gray-600 mt-2">
-        <li>Detailed list of active jobs with status updates and due dates</li>
-        <li>Filters for service type (field service, lawn care, property management)</li>
-      </ul>
-      <div class="mt-2">
-        <table class="w-full text-left border-collapse">
-          <thead>
-            <tr>
-              <th class="border-b py-2">Job ID</th>
-              <th class="border-b py-2">Type</th>
-              <th class="border-b py-2">Status</th>
-              <th class="border-b py-2">Due Date</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class="py-2 border-b">#101</td>
-              <td class="py-2 border-b">Lawn Care</td>
-              <td class="py-2 border-b">In-Progress</td>
-              <td class="py-2 border-b">Mar 25</td>
-            </tr>
-            <tr>
-              <td class="py-2 border-b">#102</td>
-              <td class="py-2 border-b">Repair</td>
-              <td class="py-2 border-b">Pending</td>
-              <td class="py-2 border-b">Mar 26</td>
-            </tr>
-            <tr>
-              <td class="py-2 border-b">#103</td>
-              <td class="py-2 border-b">Maintenance</td>
-              <td class="py-2 border-b">Completed</td>
-              <td class="py-2 border-b">Mar 24</td>
-            </tr>
-          </tbody>
-        </table>
+      
+  
+<!-- ADDITIONAL DASHBOARD SECTIONS (All Users) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-start">
+    <!-- 1) BILLING & AGING SUMMARY -->
+    <div class="bg-white p-4 rounded shadow border border-green-200 h-full flex flex-col">
+      <h2 class="text-xl font-bold text-green-800 mb-4">Billing & Aging Summary</h2>
+  
+      <!-- Two-Column Layout on MD+ screens -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 flex-1">
+        <!-- Left Column: Basic Billing Overview -->
+        <div>
+          <h3 class="text-lg font-semibold text-green-800 mb-2">Billing Overview</h3>
+          <div class="flex items-center justify-between text-sm text-gray-700 mb-2">
+            <span>Outstanding Balance:</span>
+            <span class="font-bold text-red-600">$125.00</span>
+          </div>
+          <div class="flex items-center justify-between text-sm text-gray-700 mb-2">
+            <span>Next Invoice Date:</span>
+            <span class="font-bold">Mar 1, 2025</span>
+          </div>
+          <div class="flex items-center justify-between text-sm text-gray-700">
+            <span>Last Payment:</span>
+            <span>Feb 1, 2025 - <em class="text-green-600">Processed</em></span>
+          </div>
+        </div>
+  
+        <!-- Right Column: Aging Summary -->
+        <div>
+          <h3 class="text-lg font-semibold text-green-800 mb-2">Aging Details</h3>
+          <div class="space-y-2 text-sm">
+            <div class="flex items-center justify-between">
+              <span class="font-medium text-gray-700">Outstanding Balance:</span>
+              <span class="font-bold text-blue-600">$0.00</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="font-medium text-gray-700">Paid:</span>
+              <span class="font-bold text-green-600">$0.00</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="font-medium text-gray-700">Credit:</span>
+              <span class="font-bold text-purple-600">$0.00</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="font-medium text-gray-700">Past Due:</span>
+              <span class="font-bold text-red-600">$0.00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <!-- Single Set of Action Buttons for Both Columns -->
+      <div class="mt-4 flex flex-col sm:flex-row sm:space-x-2 space-y-2 sm:space-y-0">
+        <button
+          class="flex-1 py-2 bg-green-700 text-white rounded-md hover:bg-green-800 transition-colors
+                 text-sm flex items-center justify-center"
+        >
+          <i class="fa-solid fa-credit-card mr-2"></i>Make Payment
+        </button>
+        <button
+          class="flex-1 py-2 bg-gray-100 text-green-700 border border-green-700 rounded-md
+                 hover:bg-gray-200 transition-colors text-sm flex items-center justify-center"
+        >
+          <i class="fa-solid fa-file-invoice mr-2"></i>View Statement
+        </button>
       </div>
     </div>
-  </section>
-  <!-- END: Scheduling & Task Management -->
-
-  <!-- BEGIN: Location & Mapping Tools -->
-  <section>
-    <h2 class="text-xl font-semibold mb-2">Location & Mapping Tools</h2>
-
-    <div class="bg-white p-4 rounded shadow">
-      <h3 class="font-bold text-gray-700">Interactive Map (Placeholder)</h3>
-      <p class="text-gray-600"><em>Map displaying real-time GPS tracking here...</em></p>
-      <ul class="list-disc list-inside text-gray-600 mt-2">
-        <li>Real-time GPS tracking of technicians or service vehicles</li>
-        <li>Job location markers with quick view details</li>
+    <!-- END BILLING & AGING SUMMARY -->
+  
+    <!-- 2) UPCOMING JOBS & VISITS -->
+    <div class="bg-white p-4 rounded shadow border border-green-200 h-full flex flex-col">
+      <h2 class="text-xl font-bold text-green-800 mb-4">Upcoming Jobs & Visits</h2>
+      <ul class="space-y-3 text-sm text-gray-700 flex-1">
+        <li class="flex items-center justify-between border-b pb-2">
+          <div>
+            <span class="block font-medium text-green-800">Mowing</span>
+            <span class="text-gray-600">Mar 10, 2025 • 9:00 AM</span>
+          </div>
+          <button class="text-green-700 hover:underline">
+            Details
+          </button>
+        </li>
+        <li class="flex items-center justify-between border-b pb-2">
+          <div>
+            <span class="block font-medium text-green-800">Fertilizer Application</span>
+            <span class="text-gray-600">Mar 15, 2025 • 11:00 AM</span>
+          </div>
+          <button class="text-green-700 hover:underline">
+            Reschedule
+          </button>
+        </li>
+        <li class="flex items-center justify-between">
+          <div>
+            <span class="block font-medium text-green-800">Weed Treatment</span>
+            <span class="text-gray-600">Mar 20, 2025 • 2:00 PM</span>
+          </div>
+          <button class="text-green-700 hover:underline">
+            Details
+          </button>
+        </li>
       </ul>
+      <div class="mt-4 text-right">
+        <a
+          href="#"
+          class="inline-block py-2 px-4 bg-green-700 text-white rounded-md hover:bg-green-800 transition-colors text-sm"
+        >
+          View All Visits
+        </a>
+      </div>
     </div>
-
-    <div class="mt-4 bg-white p-4 rounded shadow">
-      <h3 class="font-bold text-gray-700">Route Optimization</h3>
-      <p class="text-gray-600"><em>Optimized route suggestions displayed here...</em></p>
-      <ul class="list-disc list-inside text-gray-600 mt-2">
-        <li>Suggested routes for upcoming jobs to reduce travel time</li>
+    <!-- END UPCOMING JOBS -->
+  
+    <!-- 3) MESSAGES & NOTICES (Takes 2 columns on MD+ screens) -->
+    <div class="bg-white p-4 rounded shadow border border-green-200 h-full flex flex-col md:col-span-2">
+      <h2 class="text-lg font-semibold text-green-800 mb-2">Messages &amp; Notices</h2>
+      <ul class="space-y-2 text-sm text-gray-700 flex-1">
+        <li class="border-b pb-2">
+          <span class="font-medium text-green-800">Feb 25:</span>
+          Lawn fertilization service is being rescheduled due to weather conditions.
+        </li>
+        <li class="border-b pb-2">
+          <span class="font-medium text-green-800">Feb 20:</span>
+          Reminder: Rent due March 1 for in-house tenants.
+        </li>
       </ul>
+      <a
+        href="#"
+        class="text-green-700 hover:underline mt-2 inline-block text-sm"
+      >
+        View All Messages
+      </a>
     </div>
-  </section>
-  <!-- END: Location & Mapping Tools -->
+  </div>
+  
+  
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 
-  <!-- BEGIN: Detailed Analytics & Trends -->
-  <section>
-    <h2 class="text-xl font-semibold mb-2">Detailed Analytics & Trends</h2>
-    
-    <div class="bg-white p-4 rounded shadow">
-      <h3 class="font-bold text-gray-700">Financial Charts</h3>
-      <ul class="list-disc list-inside text-gray-600 mt-2">
-        <li>Revenue trends over time (Line chart placeholder)</li>
-        <li>Profit margins by service category (Bar chart placeholder)</li>
-      </ul>
+<!-- A single lawn-care property card (place within a grid if needed) -->
+<div class="group relative bg-white rounded-md shadow border border-green-200 flex flex-col overflow-hidden w-72">
+    <!-- Top: Fixed-Height Container -->
+    <div class="relative w-full h-40 bg-gray-100 overflow-hidden">
+      <!-- Real Image (if available) -->
+      <!--
+      <img 
+        src="https://via.placeholder.com/400x200" 
+        alt="Property Image" 
+        class="w-full h-full object-cover"
+      />
+      -->
+  
+      <!-- Fallback Icon if no image -->
+      <div class="absolute inset-0 flex items-center justify-center">
+        <i class="fa-solid fa-house text-green-600 text-6xl"></i>
+      </div>
+  
+      <!-- HOVER OVERLAY: White cover with additional actions/info -->
+      <div
+        class="absolute inset-0 bg-white bg-opacity-0 
+               opacity-0 group-hover:bg-opacity-90 group-hover:opacity-100
+               transition duration-300 ease-in-out flex flex-col justify-center items-center space-y-2 px-4 text-center"
+      >
+        <p class="text-green-800 text-sm font-semibold">
+          <i class="fa-solid fa-seedling mr-1"></i>
+          Fertilizer Program Active
+        </p>
+        <p class="text-green-800 text-sm">
+          <i class="fa-solid fa-tractor mr-1"></i>
+          Edging &amp; Weed Control
+        </p>
+        <div class="flex space-x-3 mt-3">
+          <a
+            href="#"
+            class="bg-green-700 text-white px-3 py-2 rounded-md text-xs 
+                   hover:bg-green-800 transition-colors flex items-center"
+          >
+            <i class="fa-solid fa-leaf mr-1"></i> Modify Service
+          </a>
+          <a
+            href="#"
+            class="border border-green-700 text-green-700 px-3 py-2 rounded-md text-xs 
+                   hover:bg-green-50 transition-colors flex items-center"
+          >
+            <i class="fa-solid fa-ban mr-1"></i> Cancel Visit
+          </a>
+        </div>
+      </div>
     </div>
-
-    <div class="mt-4 bg-white p-4 rounded shadow">
-      <h3 class="font-bold text-gray-700">Service Performance Charts</h3>
-      <ul class="list-disc list-inside text-gray-600 mt-2">
-        <li>Pie chart: Job types (Maintenance 35%, Repair 45%, Lawn Care 20%)</li>
-        <li>Bar graph: Technician performance over time (Placeholder)</li>
-      </ul>
+  
+    <!-- Middle: Property Details -->
+    <div class="p-4 flex-1 flex flex-col">
+      <h3 class="text-lg font-semibold text-green-800">1234 Green Street</h3>
+      <p class="text-gray-600 text-sm mt-1">
+        Service: <strong>Weekly Mowing</strong>
+      </p>
+      <p class="text-gray-600 text-sm">
+        Next Visit: <strong>Mar 10, 2025 @ 9:00 AM</strong>
+      </p>
     </div>
-
-    <div class="mt-4 bg-white p-4 rounded shadow">
-      <h3 class="font-bold text-gray-700">Customer Feedback Trends</h3>
-      <ul class="list-disc list-inside text-gray-600 mt-2">
-        <li>Aggregated review scores (Last month: 4.5, This month: 4.6)</li>
-        <li>Satisfaction trends (Chart placeholder)</li>
-      </ul>
+  
+    <!-- Bottom: Quick Actions -->
+    <div
+      class="border-t border-green-100 p-4 transition-colors
+             bg-white group-hover:bg-green-50 flex space-x-4 items-center"
+    >
+      <a href="#" class="text-green-700 hover:underline text-sm flex items-center">
+        <i class="fa-solid fa-eye mr-1"></i>View
+      </a>
+      <a href="#" class="text-green-700 hover:underline text-sm flex items-center">
+        <i class="fa-solid fa-handshake-angle mr-1"></i>Request Service
+      </a>
     </div>
-  </section>
-  <!-- END: Detailed Analytics & Trends -->
-
-  <!-- BEGIN: Operational Metrics & Reports -->
-  <section>
-    <h2 class="text-xl font-semibold mb-2">Operational Metrics & Reports</h2>
-
-    <div class="bg-white p-4 rounded shadow">
-      <h3 class="font-bold text-gray-700">Work Order Details</h3>
-      <p class="text-gray-600"><em>Summary of pending/overdue jobs here...</em></p>
-      <ul class="list-disc list-inside text-gray-600 mt-2">
-        <li>Pending Work Orders: 8</li>
-        <li>Overdue Tasks: 3</li>
-        <li>Recently Completed Jobs: 15</li>
-      </ul>
+  </div>
+     <!-- LANDLORD MANAGEMENT CARD -->
+     <div class="group relative bg-white rounded-md shadow border border-green-200 flex flex-col overflow-hidden">
+        <!-- Top: Icon or Image (fixed height) -->
+        <div class="relative w-full h-40 bg-gray-100 flex items-center justify-center">
+          <!-- Icon fallback -->
+          <i class="fa-solid fa-user-tie text-green-600 text-6xl"></i>
+          <!-- If you have an image, swap out the above <i> for:
+          <img 
+            src="some-landlord-image.jpg" 
+            alt="Landlord Management" 
+            class="absolute inset-0 w-full h-full object-cover"
+          />
+          -->
+          <!-- Hover Overlay -->
+          <div
+            class="absolute inset-0 bg-white bg-opacity-0 
+                   opacity-0 group-hover:bg-opacity-90 group-hover:opacity-100
+                   transition duration-300 ease-in-out flex flex-col justify-center items-center space-y-2 px-4 text-center"
+          >
+            <p class="text-green-800 text-sm font-semibold">
+              <i class="fa-solid fa-user-friends mr-1"></i> Manage Tenants
+            </p>
+            <p class="text-green-800 text-sm">
+              <i class="fa-solid fa-chart-line mr-1"></i> View Property Analytics
+            </p>
+            <div class="flex space-x-3 mt-3">
+              <a
+                href="#"
+                class="bg-green-700 text-white px-3 py-2 rounded-md text-xs 
+                       hover:bg-green-800 transition-colors flex items-center"
+              >
+                <i class="fa-solid fa-calendar-check mr-1"></i> Schedule Maintenance
+              </a>
+              <a
+                href="#"
+                class="border border-green-700 text-green-700 px-3 py-2 rounded-md text-xs 
+                       hover:bg-green-50 transition-colors flex items-center"
+              >
+                <i class="fa-solid fa-coins mr-1"></i> Rent &amp; Billing
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- Middle: Brief Description -->
+        <div class="p-4 flex-1 flex flex-col">
+          <h3 class="text-lg font-semibold text-green-800">Landlord Management</h3>
+          <p class="text-gray-600 text-sm mt-1">
+            Manage tenant details, schedule property maintenance, and view property analytics.
+          </p>
+        </div>
+        <!-- Bottom: Quick Actions -->
+        <div
+          class="border-t border-green-100 p-4 transition-colors
+                 bg-white group-hover:bg-green-50 flex flex-wrap gap-4 items-center"
+        >
+          <a href="#" class="text-green-700 hover:underline text-sm flex items-center">
+            <i class="fa-solid fa-user-friends mr-1"></i> View Tenant List
+          </a>
+          <a href="#" class="text-green-700 hover:underline text-sm flex items-center">
+            <i class="fa-solid fa-calendar-check mr-1"></i> Schedule Maintenance
+          </a>
+          <a href="#" class="text-green-700 hover:underline text-sm flex items-center">
+            <i class="fa-solid fa-coins mr-1"></i> Rent &amp; Billing
+          </a>
+          <a href="#" class="text-green-700 hover:underline text-sm flex items-center">
+            <i class="fa-solid fa-chart-line mr-1"></i> Property Analytics
+          </a>
+        </div>
+      </div>
+ 
+  
+    <!-- IN-HOUSE TENANT CARD -->
+    <div class="group relative bg-white rounded-md shadow border border-green-200 flex flex-col overflow-hidden">
+      <!-- Top: Icon or Image (fixed height) -->
+      <div class="relative w-full h-40 bg-gray-100 flex items-center justify-center">
+        <!-- Icon fallback -->
+        <i class="fa-solid fa-user-house text-green-600 text-6xl"></i>
+        <!-- If you have an image, swap the above <i> for:
+        <img 
+          src="some-inhouse-tenant-image.jpg" 
+          alt="In-House Tenant" 
+          class="absolute inset-0 w-full h-full object-cover"
+        />
+        -->
+        <!-- Hover Overlay -->
+        <div
+          class="absolute inset-0 bg-white bg-opacity-0 
+                 opacity-0 group-hover:bg-opacity-90 group-hover:opacity-100
+                 transition duration-300 ease-in-out flex flex-col justify-center items-center space-y-2 px-4 text-center"
+        >
+          <p class="text-green-800 text-sm font-semibold">
+            <i class="fa-solid fa-file-contract mr-1"></i> Lease Details
+          </p>
+          <p class="text-green-800 text-sm">
+            <i class="fa-solid fa-comment-dots mr-1"></i> Contact Management
+          </p>
+          <div class="flex space-x-3 mt-3">
+            <a
+              href="#"
+              class="bg-green-700 text-white px-3 py-2 rounded-md text-xs 
+                     hover:bg-green-800 transition-colors flex items-center"
+            >
+              <i class="fa-solid fa-money-bill-wave mr-1"></i> Pay Rent
+            </a>
+            <a
+              href="#"
+              class="border border-green-700 text-green-700 px-3 py-2 rounded-md text-xs 
+                     hover:bg-green-50 transition-colors flex items-center"
+            >
+              <i class="fa-solid fa-leaf mr-1"></i> Request Lawn Service
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- Middle: Brief Description -->
+      <div class="p-4 flex-1 flex flex-col">
+        <h3 class="text-lg font-semibold text-green-800">In-House Tenant</h3>
+        <p class="text-gray-600 text-sm mt-1">
+          You rent directly from JJ Turfs. View your lease details, pay rent, request lawn-care services,
+          or contact management.
+        </p>
+      </div>
+      <!-- Bottom: Quick Actions -->
+      <div
+        class="border-t border-green-100 p-4 transition-colors
+               bg-white group-hover:bg-green-50 flex flex-wrap gap-4 items-center"
+      >
+        <a href="#" class="text-green-700 hover:underline text-sm flex items-center">
+          <i class="fa-solid fa-file-contract mr-1"></i> View Lease Agreement
+        </a>
+        <a href="#" class="text-green-700 hover:underline text-sm flex items-center">
+          <i class="fa-solid fa-money-bill-wave mr-1"></i> Pay Rent
+        </a>
+        <a href="#" class="text-green-700 hover:underline text-sm flex items-center">
+          <i class="fa-solid fa-leaf mr-1"></i> Request Lawn Service
+        </a>
+        <a href="#" class="text-green-700 hover:underline text-sm flex items-center">
+          <i class="fa-solid fa-comment-dots mr-1"></i> Contact Management
+        </a>
+      </div>
     </div>
+  
 
-    <div class="mt-4 bg-white p-4 rounded shadow">
-      <h3 class="font-bold text-gray-700">Resource Management</h3>
-      <ul class="list-disc list-inside text-gray-600 mt-2">
-        <li>Inventory levels (e.g., Lawn fertilizer: 20 bags left, Screws: 1,000 left)</li>
-        <li>Staff utilization reports (Average 32 hrs/week vs. scheduled 40 hrs)</li>
-      </ul>
-    </div>
-  </section>
-  <!-- END: Operational Metrics & Reports -->
-
-  <!-- BEGIN: Other Functional Widgets -->
-  <section>
-    <h2 class="text-xl font-semibold mb-2">Other Functional Widgets</h2>
-
-    <div class="bg-white p-4 rounded shadow">
-      <h3 class="font-bold text-gray-700">Weather Widget</h3>
-      <p class="text-gray-600"><em>Local weather data fetched here...</em></p>
-      <ul class="list-disc list-inside text-gray-600 mt-2">
-        <li>Today's Forecast: Sunny, High 72°F</li>
-        <li>Tomorrow's Forecast: Partly Cloudy, High 68°F</li>
-      </ul>
-    </div>
-    
-    <div class="mt-4 bg-white p-4 rounded shadow">
-      <h3 class="font-bold text-gray-700">Live Chat or Communication Feed</h3>
-      <p class="text-gray-600"><em>Chat interface with field teams here...</em></p>
-      <ul class="list-disc list-inside text-gray-600 mt-2">
-        <li>Technician 1: <em>"Checking in at customer's location"</em></li>
-        <li>Dispatcher: <em>"Make sure to confirm inventory after the job"</em></li>
-      </ul>
-    </div>
-
-    <div class="mt-4 bg-white p-4 rounded shadow">
-      <h3 class="font-bold text-gray-700">Announcements/Company News Feed</h3>
-      <ul class="list-disc list-inside text-gray-600 mt-2">
-        <li>New Policy: Safety training updates will be mandatory starting April 1st.</li>
-        <li>Team Outing: Company picnic scheduled for May 5th.</li>
-      </ul>
-    </div>
-  </section>
-  <!-- END: Other Functional Widgets -->
-</div>
+  </div>
 
 <?php
 // Capture the buffered content into a variable
